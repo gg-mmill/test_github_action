@@ -1,0 +1,21 @@
+name: test CI
+
+on: [push, pull_request]
+
+jobs:
+  test_ci:
+    name: test ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: GitGuardian iac scan
+        run: |
+          env
+          env | grep GITHUB_HEAD_REF
+          env | grep GITHUB_BASE_REF
+
+          git log --oneline HEAD~10..HEAD
+        env:
+          GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
