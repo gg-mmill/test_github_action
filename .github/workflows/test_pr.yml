@@ -1,10 +1,10 @@
 name: test CI
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test_ci:
-    name: test ci on push + pull_request
+    name: test ci on pull_request only
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
